@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/mainCss/Main.css">
+</head>
+<body>
+
+    <%- include ('../../partials/navbar.ejs') %>
+    <div class="container">
+        <form action="/logo/salvar" method="POST" enctype="multipart/form-data" class="form-admin">
+            <div class="form-group">
+                <label for="imagemLogotipo">Imagem do Logotipo:</label>
+                <input type="file" id="imagemLogotipo" name="imagem" accept="image/*" class="form-control">
+            </div>
+            <button type="submit" class="btn-submit">Salvar Logotipo</button>
+        </form>
+
+        <% if (logo) { %>
+            <div class="logo-atual">
+                <h3>Logotipo Atual:</h3>
+                <img width="100%" src="/uploads/<%= logo.imagem %>" alt="Logotipo" class="logo-image">
+            </div>
+        <% } else { %>
+            <p>Nenhum logotipo encontrado.</p>
+        <% } %>
+    </div>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/mainCss/Main.css">
+    <title>Nova Notícia</title>
+</head>
+<body>
+    <%- include ('../../partials/navbar.ejs') %>
+
+
+
+    <div class="container">
+        <!-- Formulário para adicionar início -->
+        <form action="/inicio/salvar" method="POST" enctype="multipart/form-data">
+            <div>
+                <label for="imagem">Imagem:</label>
+                <input type="file" id="imagem" name="imagem" accept="image/*">
+            </div>
+            <div>
+                <label for="titulo">Título:</label>
+                <input type="text" id="titulo" name="titulo">
+            </div>
+            <div>
+                <label for="descricao">Descrição:</label>
+                <textarea id="descricao" name="descricao"></textarea>
+            </div>
+            <button type="submit">Salvar</button>
+        </form>
+    
+        <!-- Lista de inícios -->
+        <div class="items-list">
+            <% inicios.forEach(inicio => { %>
+                <div class="item">
+                    <img src="/uploads/<%= inicio.imagem %>" alt="Imagem de Início">
+                    <h3><%= inicio.titulo %></h3>
+                    <p><%= inicio.descricao %></p>
+                    <form action="/inicio/deletar" method="POST">
+                        <input type="hidden" name="id" value="<%= inicio.id %>">
+                        <button type="submit" class="btn btn-danger">Deletar</button>
+                    </form>
+                </div>
+            <% }) %>
+        </div>
+    </div>
+    
+    
+    
+</body>
+</html>

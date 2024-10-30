@@ -1,0 +1,23 @@
+use imobiliaria;
+
+CREATE TABLE IF NOT EXISTS Bairros (
+	id INTEGER AUTO_INCREMENT PRIMARY KEY,
+    bairro VARCHAR(255) NOT NULL
+);
+
+
+CREATE TABLE IF NOT EXISTS imovel (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    imagem VARCHAR(10000) NOT NULL,
+    bairro_id INTEGER NOT NULL,
+    quartos INT NOT NULL,
+    texto VARCHAR(255) NOT NULL,
+    valor VARCHAR(255) NOT NULL,
+    slug VARCHAR(255) NOT NULL,
+    tipo VARCHAR(255) NOT NULL,
+    FOREIGN KEY (bairro_id) REFERENCES Bairros(id)
+);
+
+
+
+

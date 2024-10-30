@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/mainCss/Main.css">
+    <title>Notícias</title>
+</head>
+<body>
+    <%- include ('../../partials/navbar.ejs') %>
+    <div class="container">
+        <!-- Formulário para adicionar notícia -->
+        <form action="/noticias/salvar" method="POST" enctype="multipart/form-data">
+            <div>
+                <label for="imagemNoticia">Imagem:</label>
+                <input type="file" id="imagemNoticia" name="imagemNoticia" accept="image/*">
+            </div>
+            <div>
+                <label for="tituloNoticia">Título:</label>
+                <input type="text" id="tituloNoticia" name="tituloNoticia">
+            </div>
+            <div>
+                <label for="subtituloNoticia">Subtítulo:</label>
+                <input type="text" id="subtituloNoticia" name="subtituloNoticia">
+            </div>
+            <div>
+                <label for="conteudoNoticia">Descrição:</label>
+                <textarea id="conteudoNoticia" name="conteudoNoticia"></textarea>
+            </div>
+            <div>
+                <label for="noticiaFixada">Notícia Fixada:</label>
+                <select id="noticiaFixada" name="noticiaFixada">
+                    <option value="sim">Sim</option>
+                    <option value="nao">Não</option>
+                </select>
+            </div>
+            <button type="submit">Salvar</button>
+        </form>
+    
+        <!-- Lista de notícias -->
+        <div class="items-list">
+            <% noticias.forEach(noticia => { %>
+                <div class="item">
+                    <img src="/arquivosNoticias/<%= noticia.imagem %>" alt="Notícia">
+                    <h3><%= noticia.titulo %></h3>
+                    <p><%= noticia.subtitulo %></p>
+                    <p><%= noticia.descricao %></p>
+                    <form action="/noticias/deletar" method="POST">
+                        <input type="hidden" name="id" value="<%= noticia.id %>">
+                        <button type="submit" class="btn btn-danger">Deletar</button>
+                    </form>
+                </div>
+            <% }) %>
+        </div>
+    </div>
+    
+
+    
+</body>
+</html>

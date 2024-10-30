@@ -1,0 +1,100 @@
+const express = require('express');
+const router = express.Router();
+const Noticia = require('./Noticia');
+const adminAuth = require('../middlewares/adminAuth');
+const multer = require("multer")
+const path = require("path")
+const Footer = require("./Footer");
+const slugify = require('slugify');
+
+
+
+
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, 'public/uploads/');
+    },
+    filename: (req, file, cb) => {
+        cb(null, Date.now() + path.extname(file.originalname));
+    }
+});
+
+const fileFilter = (req, file, cb) => {
+    const allowedTypes = ['image/jpeg', 'image/png', 'image/gif'];
+    if (allowedTypes.includes(file.mimetype)) {
+        cb(null, true);
+    } else {
+        cb(new Error('Tipo de arquivo não permitido'), false);
+    }
+};
+
+
+const upload = multer({
+    storage: storage,
+    fileFilter: fileFilter,
+    limits: {
+        fileSize: 1024 * 1024 * 5 // Limite de 5MB
+    }
+});
+
+router.post("/footer/salvar", (req, res) => {
+    const { Contato, facebook, linkedin, instagram, youTube, Texto } = req.body;
+
+    Footer.create({
+        Contato: Contato,
+        facebook: facebook,
+        linkedin: linkedin,
+        instagram: instagram,
+        youTube: youTube,
+        Texto: Texto
+    }).then(() => {
+        res.redirect("/admin/adc/footer");
+    }).catch((err) => {
+        console.error("Erro ao salvar footer:", err);
+        res.redirect("/admin/adc/footer");
+    });
+});
+
+
+router.get("/admin/adc/footer", (req, res) => {
+    Footer.findAll().then(footers => {
+        res.render("admin/adc/footer", { footers: footers });
+    }).catch(err => {
+        console.error("Erro ao buscar footers:", err);
+        res.redirect("/");
+    });
+});
+router.get("/noticias", (req, res) => {
+    Footer.findAll().then(footers => {
+        res.render("noticias", { footers: footers });
+    }).catch(err => {
+        console.error("Erro ao buscar footers:", err);
+        res.redirect("/");
+    });
+});
+
+// Rota para deletar um footer
+router.post("/footer/deletar", (req, res) => {
+    const id = req.body.id;
+
+    if (id !== undefined) {
+        if (!isNaN(id)) {
+            Footer.destroy({
+                where: {
+                    id: id
+                }
+            }).then(() => {
+                res.redirect("/admin/adc/footer");
+            }).catch(err => {
+                console.error("Erro ao deletar footer:", err);
+                res.redirect("/admin/adc/footer");
+            });
+        } else {
+            res.redirect("/admin/adc/footer");
+        }
+    } else {
+        res.redirect("/admin/adc/footer");
+    }
+});
+
+module.exports = router;

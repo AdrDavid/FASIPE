@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/mainCss/Main.css">
+    <title>Criar Footer</title>
+    <style>
+       
+       h1 {
+            text-align: center;
+            margin-top: 20px;
+            color: #333;
+        }
+        form {
+            width: 60%;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        form div {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #333;
+        }
+        input[type="text"],
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        textarea {
+            height: 100px;
+        }
+        button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .footer-list {
+            width: 80%;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        .footer-item {
+            padding: 10px;
+            border-bottom: 1px solid #ccc;
+            position: relative;
+        }
+        .footer-item:last-child {
+            border-bottom: none;
+        }
+        .footer-item button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #dc3545;
+        }
+        .footer-item button:hover {
+            background-color: #c82333;
+        }
+    </style>
+</head>
+<body>
+
+    <%- include ('../../partials/navbar.ejs') %>
+    <div class="container">
+        <!-- Formulário para adicionar informações do Footer -->
+        <form action="/footer/salvar" method="POST">
+            <div>
+                <label for="Contato">Contato:</label>
+                <input type="text" id="Contato" name="Contato">
+            </div>
+            <div>
+                <label for="facebook">Facebook:</label>
+                <input type="text" id="facebook" name="facebook">
+            </div>
+            <div>
+                <label for="linkedin">LinkedIn:</label>
+                <input type="text" id="linkedin" name="linkedin">
+            </div>
+            <div>
+                <label for="instagram">Instagram:</label>
+                <input type="text" id="instagram" name="instagram">
+            </div>
+            <div>
+                <label for="youTube">YouTube:</label>
+                <input type="text" id="youTube" name="youTube">
+            </div>
+            <div>
+                <label for="Texto">Texto:</label>
+                <textarea id="Texto" name="Texto"></textarea>
+            </div>
+            <button type="submit">Salvar</button>
+        </form>
+    
+        <!-- Lista de informações do Footer -->
+        <div class="items-list">
+            <% footers.forEach(footer => { %>
+                <div class="item">
+                    <p><strong>Contato:</strong> <%= footer.Contato %></p>
+                    <p><strong>Facebook:</strong> <a href="<%= footer.facebook %>"><%= footer.facebook %></a></p>
+                    <p><strong>LinkedIn:</strong> <a href="<%= footer.linkedin %>"><%= footer.linkedin %></a></p>
+                    <p><strong>Instagram:</strong> <a href="<%= footer.instagram %>"><%= footer.instagram %></a></p>
+                    <p><strong>YouTube:</strong> <a href="<%= footer.youTube %>"><%= footer.youTube %></a></p>
+                    <p><strong>Texto:</strong> <%= footer.Texto %></p>
+                    <form action="/footer/deletar" method="POST" >
+                        <input type="hidden" name="id" value="<%= footer.id %>">
+                        <button type="submit">Excluir</button>
+                    </form>
+                </div>
+            <% }) %>
+        </div>
+    </div>
+    
+</body>
+</html>

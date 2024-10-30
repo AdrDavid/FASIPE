@@ -1,0 +1,394 @@
+<%- include ('partials/head.ejs') %>
+    <div id="top"></div>
+
+        <!-- main -->
+    <main>
+        <!-- inicio -->
+        <% inicios.forEach(function(inicio) { %>
+            <div class="inicio" style="background-image: url('/uploads/<%= inicio.imagem %>')">
+                <div class="gradiente">
+                    <div class="texto_inicio">
+                        <h1 class="kanit-extrabold"><%= inicio.titulo %></h1>
+                        <p><%= inicio.descricao %></p>
+                    </div>
+                </div>
+            </div>
+            <% }) %>
+            <!-- inicio -->
+            
+            
+            <!-- video -->
+            <div class="destaque_principal">
+                <div class="titulo_destaque">
+                    <h1>Conheça nosso curso</h1>
+                </div>
+                <% videos.forEach(video => { %>
+                <div class="conteudo_principal">
+                    <video class="video_alinhamento" width="100%" height="100%" controls muted>
+                        <source src="<%= video.url %>" type="video/mp4">
+                        Seu navegador não suporta vídeos em HTML5.
+                    </video>
+                </div>
+                <% }); %>
+                
+            
+             </div>
+        <!-- video -->
+        
+        
+<!-- carrossel -->
+
+        <div class="carrossel_noticias" ">
+            <!-- exemplo -->
+            <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="false">
+                <div class="carousel-indicators">
+                  <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                  <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                  <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                </div>
+                <!-- carrossel_inner -->
+                <div class="carousel-inner">
+
+                    <!-- item  -->
+                    <% noticias.forEach((noticia, index) =>{ %>
+                        <div class="carousel-item <%= index === 0 ? 'active' : '' %> " style="background-image: url('/arquivosNoticias/<%= noticia.imagem %>'); background-repeat: no-repeat; background-size: cover;" bac>
+                            <!-- imagem -->
+                            <div class="imagem_noticia1">
+                                <!-- bloco -->
+                                <div class="bloco_noticia">
+                                    <div class="barra_colorida_bloco_noticia"></div>    
+                                        <!-- texto -->
+                                        <div class="texto_bloco_noticia">
+                                            <h5><%= noticia.titulo %></h5>
+                                            <p><%= noticia.conteudo %></p>
+                                        </div>
+                                        <!-- texto -->
+                                            
+                                            <!-- botao_enc_noticia -->
+                                        <div class="botao_enc_noticia">
+                                            <div class="espaco">
+                                                
+                                            </div>
+                                            <!-- botao -->
+                                            <div class="botao">
+                                                <a href="/noticia/<%= noticia.slug %>">
+                                                    <p>Saiba mais</p>
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-square-fill" viewBox="0 0 16 16">
+                                                        <path d="M0 14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2a2 2 0 0 0-2 2zm4.5-6.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5a.5.5 0 0 1 0-1"/>
+                                                    </svg>
+                                                </a>
+                                            </div>
+                                            <!-- botao -->
+                                        </div>
+                                        <!-- botao_enc_noticia -->
+                                        
+                                </div>
+                                <!-- bloco -->
+                            </div>
+                            <!-- imagem -->
+                        
+                        </div>
+                        <!-- item  -->
+                     <% }) %>
+                  
+                </div>
+                <!-- carrossel_inner -->
+
+                <!-- controle -->
+                <button style="z-index: 0;" class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Previous</span>
+                </button>
+                <button style="z-index: 0;" class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Next</span>
+                </button>
+                <!-- controle -->
+            </div>
+            <!-- exemplo -->      
+    </div>
+    <!-- carrossel -->
+    <div id="noticias"></div>
+
+
+    <div class="ultimas_noticias">
+        <!-- titulo -->
+        <div class="head_sessoes">
+            <div class="titulo_sessao">
+                <div class="texto_head_sessoes">
+                    <p>Notícias</p>
+                </div>
+                <div class="barra_cima"></div>
+                <div class="barra_baixo"></div>
+            </div>
+            <div class="botao_enc_noticia">
+                <div class="espaco">
+
+                </div>
+                <div class="botao">
+                    <a href="/noticias" target="_blank">
+                        <p>Veja mais</p>
+                        
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-square-fill" viewBox="0 0 16 16">
+                            <path d="M0 14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2a2 2 0 0 0-2 2zm4.5-6.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5a.5.5 0 0 1 0-1"/>
+                          </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <!-- titulo -->
+
+        <!-- corpo_noticias -->
+        <div class="corpo_ultimas_noticias">
+
+            <!-- noticia -->
+            <% noticias.forEach((noticia, index) =>{ %>
+            <div class="bloco_ultimas_noticias">
+                <div class="imagem_bloco_ultimas_noticias">
+                    <img src="/arquivosNoticias/<%= noticia.imagem %>" alt="Noticia 1">
+                </div>
+                <div class="texto_bloco_ultimas_noticias">
+                    <a href="/noticia/<%= noticia.slug %>">
+                        <h5><%= noticia.titulo %></h5>
+                        
+                    </a>
+                    <a href="/noticia/<%= noticia.slug %>"><p style="font-size: 20px;"><%= noticia.subtitulo %></p></a>
+                </div>
+                   
+            </div>
+            <% }) %>
+            <!-- noticia -->
+           
+        </div>
+        <!-- corpo_noticias -->
+    </div>
+<!-- <div class="cll"></div> -->
+    <!-- titulo_evento -->
+    <div class="head_sessoes">
+        <div class="titulo_sessao">
+            <div class="texto_head_sessoes">
+                <p>Eventos</p>
+            </div>
+            <div class="barra_cima"></div>
+            <div class="barra_baixo"></div>
+        </div>
+        <div class="botao_enc_noticia">
+            <div class="espaco">
+
+            </div>
+            <div class="botao">
+                <a href="/eventos">
+                    <p>Veja mais</p>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-square-fill" viewBox="0 0 16 16">
+                        <path d="M0 14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2a2 2 0 0 0-2 2zm4.5-6.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5a.5.5 0 0 1 0-1"/>
+                      </svg>
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- titulo_evento -->
+    <div id="eventos"></div>
+    <!-- enventos_total -->
+    <div class="carrossel_eventos " >
+        <div id="carouselExampleCaptions2" class="carousel slide" data-bs-ride="false">
+            <!-- botao de baico -->
+            <div class="carousel-indicators">
+              <button type="button" data-bs-target="#carouselExampleCaptions2" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+              <button type="button" data-bs-target="#carouselExampleCaptions2" data-bs-slide-to="1" aria-label="Slide 2"></button>
+              <button type="button" data-bs-target="#carouselExampleCaptions2" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            </div>
+            <!-- botao de baico -->
+
+            <!-- inner -->
+            <div class="carousel-inner">
+                <!-- cada item -->
+                <% eventos.forEach((evento, index) => { %>
+                <div class="  carousel-item <%= index === 0 ? 'active' : '' %>" >
+                    <div class="imagem_evento1" style="background-image: url('/arquivosEventos/<%= evento.imagem %>'); background-repeat: no-repeat; background-size: cover;">
+                            <div class="texto_bloco_evento">
+                                <h5><%= evento.nome %></h5>
+                                <!-- <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Molestiae magni deleniti ea nobis sequi harum voluptatum expedita modi.</p> -->
+                            </div>
+                            <div class="encaminhamentos">
+                                
+                                <a class="botao_saiba_mais" href="/evento/<%= evento.slug %>">Saiba mais</a>
+                                <a class="botao_inscricao" href="<%= evento.linkInscreverSe %>">Inscrever-se</a>
+                                
+                            </div>
+                    </div>
+                </div>
+                <% }) %>
+              <!-- cada item -->
+              
+            </div>
+            <!-- inner -->
+            
+            <!-- controle -->
+            <button style="z-index: 0;" class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions2" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button style="z-index: 0;" class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions2" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+            <!-- controle -->
+        </div>      
+    </div>
+    <!-- enventos_total -->
+<div class="pa"></div>
+    <!-- titulo pesquisa -->
+    <div class="head_sessoes">
+        <div class="titulo_sessao">
+            <div class="texto_head_sessoes">
+                <p>Pesquisas Acadêmicas</p>
+            </div>
+            <div class="barra_cima"></div>
+            <div class="barra_baixo"></div>
+        </div>
+        <div class="botao_enc_noticia">
+            <div class="espaco">
+
+            </div>
+            <div class="botao">
+                <a href="/pesquisa">
+                    <p>Veja mais</p>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-square-fill" viewBox="0 0 16 16">
+                        <path d="M0 14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2a2 2 0 0 0-2 2zm4.5-6.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5a.5.5 0 0 1 0-1"/>
+                      </svg>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- titulo pesquisa -->
+    <div id="pesquisas"></div>
+    <!-- carrosel_pesquisa -->
+    <div class="carrossel_pesquisa" >
+        <div id="carouselExampleCaptions3" class="carousel slide" data-bs-ride="false">
+
+            <!-- indicador -->
+            <div class="carousel-indicators">
+              <button style="z-index: 0;" type="button" data-bs-target="#carouselExampleCaptions3" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+              <button style="z-index: 0;" type="button" data-bs-target="#carouselExampleCaptions3" data-bs-slide-to="1" aria-label="Slide 2"></button>
+              <button style="z-index: 0;" type="button" data-bs-target="#carouselExampleCaptions3" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            </div>
+            <!-- indicador -->
+
+
+
+            <!-- inner -->   
+            <div class="carousel-inner">
+
+                <!-- item -->
+                 <% pesquisas.forEach((pesquisa, index) => { %>
+                    <div class="carousel-item <%= index === 0 ? 'active' : '' %>">
+                        <div class="item_pesquisa">
+                            <div class="imagem_pesquisa">
+                                <img src="uploads/<%= pesquisa.imagem %>" alt="<%= pesquisa.titulo %>">
+                            </div>
+                            <div class="texto_pesquisa">
+                                <h5><%= pesquisa.titulo %></h5>
+                                <div class="barra_texto"></div>
+                                <p><%= pesquisa.descricao %></p>
+                                <a style="margin: 0 auto;" href="/pesquisa/<%= pesquisa.slug %>">
+                                <div class="acessar">
+                                    <h1>Acessar</h1>
+                                        <div class="botao_acessar">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
+                                                <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"/>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </a>    
+                            </div>
+                        </div>
+                    </div>
+                <% }); %>
+                <!-- item -->
+              
+            </div>
+            <!-- inner -->
+
+
+            <!-- controle -->
+            <button style="z-index: 0;" class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions3" data-bs-slide="prev">
+              <span  class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button style="z-index: 0;" class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions3" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+            <!-- controle -->
+        </div>      
+    </div>
+    <!-- carrosel_pesquisa -->
+
+
+    <!-- seja aluno -->
+    <div class="pa"></div>
+    <div class="seja_aluno">
+
+        <!-- titulo -->
+        <div class="head_sessoes">
+            <div class="titulo_sessao">
+                <div class="texto_head_sessoes">
+                    <p>Seja Aluno</p>
+                </div>
+                <div class="barra_cima"></div>
+                <div class="barra_baixo"></div>
+            </div>
+            <div class="botao_enc_noticia">
+                <div class="espaco">
+
+                </div>
+               
+            </div>
+        </div>
+        <!-- titulo -->
+        <div id="seja_aluno"></div>
+
+        <!-- nao_e_aluno -->
+        <div class="barra_seja_aluno">
+            <h1>Não é aluno? Clique em Saiba Mais e faça parte da nossa família!</h1>
+            <a class="botao_seja_aluno" href="https://www.fasipe.com.br/graduacao/cursos/analise-e-desenvolvimento-de-sistemas-4">Saiba Mais</a>
+        </div>
+        <!-- nao_e_aluno -->
+
+        <!-- anuncio promo -->
+        <!-- anuncio promo -->
+        <% promocoes.forEach(promocao => { %>
+        <div class="promocao">
+                <img src="uploads/<%= promocao.imagem %>" alt="Imagem Promoção">
+                <div class="texto_promocao">
+                    <h1><%= promocao.titulo %></h1>
+                    <p><%= promocao.descricao %></p>
+                    <div class="botao_promocao">
+                        <a href="<%= promocao.link %>"><h5>Inscreva-se</h5></a>
+                    </div>
+                </div>
+        </div>
+        <% }); %>
+<!-- anuncio promo -->
+
+        <!-- anuncio promo -->
+        
+    </div>
+    <!-- seja aluno -->
+
+    </main> 
+    <!-- main -->
+<!-- //////////////////////////////////////////////////////////////// -->
+<!-- //////////////////////////////////////////////////////////////// -->
+<!-- //////////////////////////////////////////////////////////////// -->
+
+    <!-- header sidebar -->
+
+    <!-- partes -->
+    
+
+        
+
+         
+         <%- include ('partials/fixo_e_footer.ejs') %>

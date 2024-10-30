@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/mainCss/Main.css">
+    <title>Nova Notícia</title>
+</head>
+<body>
+    <%- include ('../../partials/navbar.ejs') %>
+    <div class="container">
+        <!-- Formulário para adicionar evento -->
+        <form action="/eventos/salvar" method="POST" enctype="multipart/form-data">
+            <div>
+                <label for="imagemEvento">Imagem:</label>
+                <input type="file" id="imagemEvento" name="imagemEvento" accept="image/*">
+            </div>
+            <div>
+                <label for="nome">Nome:</label>
+                <input type="text" id="nome" name="nome">
+            </div>
+            <div>
+                <label for="descricao">Descrição:</label>
+                <textarea id="descricao" name="descricao"></textarea>
+            </div>
+            <div>
+                <label for="linkSaibaMais">Link Saiba Mais:</label>
+                <input type="text" id="linkSaibaMais" name="linkSaibaMais">
+            </div>
+            <div>
+                <label for="linkInscreverSe">Link Inscrever-se:</label>
+                <input type="text" id="linkInscreverSe" name="linkInscreverSe">
+            </div>
+            <button type="submit">Salvar</button>
+        </form>
+    
+        <!-- Lista de eventos -->
+        <div class="items-list">
+            <% eventos.forEach(evento => { %>
+                <div class="item">
+                    <img src="/arquivosEventos/<%= evento.imagem %>" alt="Evento">
+                    <h3><%= evento.nome %></h3>
+                    <p><%= evento.descricao %></p>
+                    <form action="/eventos/deletar" method="POST">
+                        <input type="hidden" name="id" value="<%= evento.id %>">
+                        <button type="submit" class="btn btn-danger">Deletar</button>
+                    </form>
+                </div>
+            <% }) %>
+        </div>
+    </div>
+    
+
+
+
+
+
+    <div class="space_head">
+        
+    </div>
+    
+    
+</body>
+</html>

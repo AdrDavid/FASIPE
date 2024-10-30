@@ -1,0 +1,77 @@
+type: Sequelize.DECIMAL(10, 2),
+allowNull: false,
+get() {
+    const value = this.getDataValue('valor');
+    return value ? value.toString().replace('.', ',') : null;
+},
+set(value) {
+    this.setDataValue('valor', value ? parseFloat(value.toString().replace(',', '.')) : null);
+}
+},
+
+
+var valores = document.querySelectorAll('#valor');
+for(var i = 0; i < valores.length; i++){
+    valor = valores[i].textContent
+    valor = valor.replace(/\./g, '');
+    var valorFormatado = valor.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+    valores[i].textContent = valorFormatado;
+    console.log(valorFormatado); 
+  
+}
+
+
+
+
+document.getElementById('valorInput').addEventListener('input', function() {
+    // Remove caracteres que não são números ou vírgula, exceto na primeira posição
+    this.value = this.value.replace(/[^\d,]|^,/g, '');
+    
+    // Remove vírgulas extras (mais de uma)
+    this.value = this.value.replace(/(,)\1+/g, '$1');
+
+    this.value = this.value.replace(/(?<=,).*?,/g, '');
+});
+
+document.getElementById('quartos').addEventListener('input', function() {
+    this.value = this.value.replace(/\D/g, '');
+});
+
+
+
+
+
+
+
+
+
+imagem:{
+    type: Sequelize.STRING(10000),
+    allowNull: false
+},
+bairro:{
+    type: Sequelize.STRING,
+    allowNull: false
+},
+quartos:{
+    type: Sequelize.INTEGER,
+    allowNull: false
+},
+texto:{
+    type: Sequelize.STRING,
+    allowNull: false
+},
+
+valor:{
+    type: Sequelize.STRING,
+    allowNull: false,
+    
+},
+slug:{
+    type: Sequelize.STRING,
+    allowNull: false
+},
+tipo:{
+    type: Sequelize.STRING,
+    allowNull: false
+}

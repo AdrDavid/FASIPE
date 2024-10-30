@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nova Seção de Início</title>
+</head>
+<body>
+    <div class="section">
+        <h2>Seção de Início</h2>
+        <form action="/fundo/salvar" method="POST" enctype="multipart/form-data">
+            <label for="background-image">Imagem de Fundo:</label>
+            <input type="file" id="background-image" name="backgroundImage" accept="image/*">
+            <label for="background-title">Título:</label>
+            <input type="text" id="background-title" name="backgroundTitle">
+            <label for="background-subtitle">Subtítulo:</label>
+            <input type="text" id="background-subtitle" name="backgroundSubtitle">
+            <input type="submit" value="Salvar">
+        </form>
+    </div>
+</body>
+</html>

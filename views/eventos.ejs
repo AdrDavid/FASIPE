@@ -1,0 +1,43 @@
+<%- include ('partials/head.ejs') %>
+<main>
+    <div class="space_head">        </div>
+    <div class="head_sessoes">
+        <div class="titulo_sessao">
+            <div class="texto_head_sessoes">
+                <p>Eventos</p>
+            </div>
+            <div class="barra_cima"></div>
+            <div class="barra_baixo"></div>
+        </div>
+    </div>
+    
+                <% eventos.forEach((evento, index) => { %>
+                
+                    <div class="imagem_evento1" style="background-image: url('/arquivosEventos/<%= evento.imagem %>'); background-repeat: no-repeat; background-size: cover;">
+                            <div class="texto_bloco_evento">
+                                <h5><%= evento.nome %></h5>
+                                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Molestiae magni deleniti ea nobis sequi harum voluptatum expedita modi.</p>
+                            </div>
+                            <div class="encaminhamentos">
+                                
+                                <a class="botao_saiba_mais" href="/evento/<%= evento.slug %>">Saiba mais</a>
+                                <a class="botao_inscricao" href="<%= evento.linkInscreverSe %>">Inscrever-se</a>
+                            </div>
+                            
+                            
+                    </div>
+
+                    <div style="height: 100px;">
+                        <hr>
+                        <hr>
+                        <hr>
+                        <hr>
+                        <hr>
+                        <hr>
+                    </div>
+                <% }) %>
+
+</main>
+
+<%- include ('partials/side.ejs') %>
+

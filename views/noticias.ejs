@@ -1,0 +1,37 @@
+
+<%- include ('partials/head.ejs') %>
+    
+    <main>
+        <div class="space_head">        </div>
+        <div class="head_sessoes">
+            <div class="titulo_sessao">
+                <div class="texto_head_sessoes">
+                    <p>Notícias</p>
+                </div>
+                <div class="barra_cima"></div>
+                <div class="barra_baixo"></div>
+            </div>
+        </div>
+        <!-- noticia -->
+
+        <a href="/" class="back-link">Voltar</a>
+        <% noticias.forEach(noticia =>{ %>  
+            <div class="noticia">
+                <img src="/arquivosNoticias/<%= noticia.imagem %>" alt="Noticia 1">
+                <div class="info_noticia">
+                    <h1><%= noticia.titulo %></h1>
+                    <p><%= noticia.conteudo %>
+                    
+                    ...<a  href="/noticia/<%= noticia.slug %>">
+                        <h5>Ver Mais</h5>
+                        
+                    </a></p>
+                    
+                </div>
+                
+            </div>
+            <% }) %>
+        <!-- noticia -->
+    </main>
+
+    <%- include ('partials/side.ejs') %>

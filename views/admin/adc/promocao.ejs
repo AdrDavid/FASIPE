@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/mainCss/Main.css">
+    <title>Nova Notícia</title>
+</head>
+<body>
+    <%- include ('../../partials/navbar.ejs') %>
+    <div class="container">
+        <!-- Formulário para adicionar promoção -->
+        <form action="/promocoes/salvar" method="POST" enctype="multipart/form-data">
+            <div>
+                <label for="imagemPromocao">Imagem:</label>
+                <input type="file" id="imagemPromocao" name="imagemPromocao" accept="image/*">
+            </div>
+            <div>
+                <label for="titulo">Título:</label>
+                <input type="text" id="titulo" name="titulo">
+            </div>
+            <div>
+                <label for="descricao">Descrição:</label>
+                <textarea id="descricao" name="descricao"></textarea>
+            </div>
+            <div>
+                <label for="link">Link:</label>
+                <input type="text" id="link" name="link">
+            </div>
+            <button type="submit">Salvar</button>
+        </form>
+    
+        <!-- Lista de promoções -->
+        <div class="items-list">
+            <% if (promocoes && promocoes.length > 0) { %>
+                <% promocoes.forEach(promocao => { %>
+                    <div class="item">
+                        <img src="/uploads/<%= promocao.imagem %>" alt="<%= promocao.titulo %>">
+                        <h3><%= promocao.titulo %></h3>
+                        <p><%= promocao.descricao %></p>
+                        <p><a href="<%= promocao.link %>">Link</a></p>
+                        <form action="/promocoes/deletar" method="POST">
+                            <input type="hidden" name="id" value="<%= promocao.id %>">
+                            <button type="submit">Deletar</button>
+                        </form>
+                    </div>
+                <% }); %>
+            <% } else { %>
+                <p>Nenhuma promoção cadastrada.</p>
+            <% } %>
+        </div>
+    </div>
+    
+
+    <div class="space_head">
+        
+    </div>
+    
+    
+</body>
+</html>

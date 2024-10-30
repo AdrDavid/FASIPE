@@ -1,0 +1,58 @@
+<!-- index.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/mainCss/Main.css">
+    <title>Página Inicial</title>
+</head>
+<body>
+    <%- include ('../../partials/navbar.ejs') %>>
+
+    <div class="container">
+        <!-- Formulário para adicionar vídeo -->
+        <form action="/videos/salvar" method="POST" enctype="multipart/form-data">
+            <div>
+                <label for="video">Upload de Vídeo:</label>
+                <input type="file" id="video" name="video" accept="video/*" required>
+            </div>
+            <div>
+                <label for="titulo">Título:</label>
+                <input type="text" id="titulo" name="titulo" required>
+            </div>
+            <div>
+                <label for="descricao">Descrição:</label>
+                <textarea id="descricao" name="descricao" required></textarea>
+            </div>
+            <button type="submit">Salvar</button>
+        </form>
+    
+        <!-- Lista de vídeos -->
+        <div class="items-list">
+            <% if (videos && videos.length > 0) { %>
+                <% videos.forEach(video => { %>
+                    <div class="item">
+                        <h3><%= video.titulo %></h3>
+                        <p><%= video.descricao %></p>
+                        <video controls>
+                            <source src="<%= video.url %>" type="video/mp4">
+                            Seu navegador não suporta o elemento <code>video</code>.
+                        </video>
+                        <form action="/videos/<%= video.id %>/deletar" method="POST">
+                            <button type="submit">Apagar</button>
+                        </form>
+                    </div>
+                <% }); %>
+            <% } else { %>
+                <p>Nenhum vídeo encontrado.</p>
+            <% } %>
+        </div>
+    </div>
+    
+
+    <div class="space_head"></div>
+
+</body>
+</html>
